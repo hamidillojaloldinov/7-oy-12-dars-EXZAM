@@ -3,6 +3,33 @@ import { Navbar } from "@/components/navbar";
 import { ChevronRight, ChevronUp, SlidersVertical } from "lucide-react";
 import Link from "next/link";
 
+async function electronics() {
+  const res = await fetch(
+    "https://fakestoreapi.com/products/category/electronics"
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+async function jewelery() {
+  const res = await fetch(
+    "https://fakestoreapi.com/products/category/jewelery"
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+async function men() {
+  const res = await fetch(
+    "https://fakestoreapi.com/products/category/men's%20clothing"
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
 async function women() {
   const res = await fetch(
     "https://fakestoreapi.com/products/category/women's%20clothing"
@@ -14,12 +41,37 @@ async function women() {
 }
 
 export default async function Women() {
-  const products = await women();
-  const randomProducts2 = products.sort(() => Math.random() - 0.5).slice(0, 8);
-  // function electronicss() {onClick={()=>electronicss}}
-  // function jewelerys() {onClick={()=>jewelerys}}
-  // function mens() {onClick={()=>mens}}
-  // function womens() {onClick={()=>womens}}
+  let a = "electronics";
+  function electronicss(e) {
+    a = "electronics";
+  }
+  function jewelerys(e) {
+    a = "jewelerys";
+  }
+  function mens(e) {
+    a = "mens";
+  }
+  function womens(e) {
+    a = "womens";
+  }
+  var products = await electronics();
+  var randomProducts = products.sort(() => Math.random() - 0.5).slice(0, 8);
+  if (a === "electronics") {
+    var products = await electronics();
+    var randomProducts = products.sort(() => Math.random() - 0.5).slice(0, 8);
+  } else if (a === "jewelery") {
+    var products = await jewelery();
+    var randomProducts = products.sort(() => Math.random() - 0.5).slice(0, 8);
+  } else if (a === "men") {
+    var products = await men();
+    var randomProducts = products.sort(() => Math.random() - 0.5).slice(0, 8);
+  } else if (a === "women") {
+    var products = await women();
+    var randomProducts = products.sort(() => Math.random() - 0.5).slice(0, 8);
+  } else {
+    var products = await electronics();
+    var randomProducts = products.sort(() => Math.random() - 0.5).slice(0, 8);
+  }
   return (
     <>
       <Navbar />
@@ -31,22 +83,22 @@ export default async function Women() {
               <SlidersVertical />
             </div>
             <div className="block">
-              <button className="flex gap-20">
+              <button onClick={electronicss()} className="flex gap-20">
                 <p>electronics</p>
                 <ChevronRight />
               </button>
               <br />
-              <button className="flex gap-24">
+              <button onClick={jewelerys()} className="flex gap-24">
                 <p>jewelery</p>
                 <ChevronRight />
               </button>
               <br />
-              <button className="flex gap-14">
+              <button onClick={mens()} className="flex gap-14">
                 <p>men's clothing</p>
                 <ChevronRight />
               </button>
               <br />
-              <button className="flex gap-10 ">
+              <button onClick={womens()} className="flex gap-10 ">
                 <p>women's clothing</p>
                 <ChevronRight />
               </button>
@@ -69,7 +121,7 @@ export default async function Women() {
                 <h1>Colors</h1> <ChevronUp />
                 <br />
               </div>
-                <img src="/Frame 90.png" alt="" />
+              <img src="/Frame 90.png" alt="" />
             </div>
           </div>
           <div className="justify-center px-20 gap-10 py-10">

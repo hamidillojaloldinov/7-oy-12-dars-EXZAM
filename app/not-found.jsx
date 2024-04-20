@@ -16,7 +16,7 @@ export default function NotFound() {
             temporarily unavailable.
           </p>
           <button className="rounded-lg bg-pink-900	text-white p-2">
-            <Link href="/">Back to HomePage</Link>
+            <Link href="/Home">Back to HomePage</Link>
           </button>
         </div>
       </main>

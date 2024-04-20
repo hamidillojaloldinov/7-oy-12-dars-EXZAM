@@ -4,7 +4,7 @@ import Link from "next/link";
 export function Navbar() {
   return (
     <nav className="justify-between items-center flex p-5 mx-20 border-gray-950 border-b ">
-      <Link href="/">
+      <Link href="/home">
         <img src="/Logo.svg" alt="" />
       </Link>
       <ul className="flex gap-2">
